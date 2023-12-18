@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Text } from 'react-native';
+import { Image, Text, View } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import instance from '../../instance/instance';
 import { Movie } from '../../types/movie.types';
@@ -8,6 +8,31 @@ import LikedMovies from '../../pages/LikedMovies/LikedMovies';
 import DislikedMovies from '../../pages/DislikedMovies/DislikedMovies';
 import { useStorageMovies } from '../../hooks/useStorageMovies/useStorageMovies';
 import { AppProvider } from '../../context/Context';
+
+const DrawerNavigatorConfig = {
+    intialRouteName: 'Home',
+    navigationOptions: {
+        headerStyle: {
+            backgroundColor: '#f4511e',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+            color: 'white',
+        },
+    },
+    contentOptions: {
+        // add your styling here 
+        activeTintColor: '#e91e63',
+        itemsContainerStyle: {
+            marginVertical: 0,
+        },
+        iconContainerStyle: {
+            opacity: 1,
+        },
+    },
+    drawerBackgroundColor: '#262A2C', // sets background color of drawer
+};
+
 
 const Drawer = createDrawerNavigator();
 
@@ -42,7 +67,13 @@ const Main = () => {
 
     return (
         <AppProvider value={{ movies, setMovies }}>
-            <Drawer.Navigator initialRouteName='NotRated'>
+            <Drawer.Navigator initialRouteName='NotRated'
+                screenOptions={{
+                    headerTitle: () => <Image source={require('../../../assets/logo.png')} />,
+                    headerStyle: {
+                        backgroundColor: '#ff1c1c',
+                    }
+                }}>
                 <Drawer.Screen name="NotRated" component={NotRatedMovies} />
                 <Drawer.Screen name="Liked" component={LikedMovies} />
                 <Drawer.Screen name="Disliked" component={DislikedMovies} />

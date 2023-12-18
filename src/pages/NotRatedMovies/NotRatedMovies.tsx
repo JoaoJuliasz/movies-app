@@ -1,6 +1,6 @@
 import { useContext, useEffect, useMemo } from 'react';
 import { View, StyleSheet, Image, Button } from 'react-native';
-import MovieCard from '../../components/MovieCard';
+import MovieCard from '../../components/MovieCard/MovieCard';
 import { AppContext } from '../../context/Context';
 
 type Props = {}
@@ -23,5 +23,7 @@ const NotRatedMovies = (props: Props) => {
 export default NotRatedMovies;
 
 const styles = StyleSheet.create({
-    container: {}
+    container: {
+        flex: 1
+    }
 });
